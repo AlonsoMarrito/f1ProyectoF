@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
 import { onMounted, ref } from 'vue'
 
 // Variable reactiva para el reproductor
