@@ -15,53 +15,54 @@
 
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
-let player;
+// Variable reactiva para el reproductor
+const player = ref(null)
 
 onMounted(() => {
-  // 1. Cargar el script de la API de YouTube
-  const tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  const firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  // Cargar el script de la API de YouTube si no está cargado
+  if (!window.YT) {
+    const tag = document.createElement('script')
+    tag.src = 'https://www.youtube.com/iframe_api'
+    const firstScriptTag = document.getElementsByTagName('script')[0]
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+  }
 
-  // 2. Inicializar el reproductor de YouTube cuando la API esté lista
+  // Inicializar el reproductor cuando la API de YouTube esté lista
   window.onYouTubeIframeAPIReady = function () {
-    player = new YT.Player('player', {
+    player.value = new YT.Player('player', {
       height: '390',
       width: '640',
-      videoId: '8AYy-BcjRXg',
+      videoId: '8AYy-BcjRXg', // Cambia por el ID del video que quieras
       playerVars: {
-        'playsinline': 1
+        playsinline: 1,
       },
       events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
+        onReady: onPlayerReady,
+        onStateChange: onPlayerStateChange
       }
-    });
+    })
   }
 
-  let done = false;
+  let done = false
 
-  // 3. Función que se ejecuta cuando el reproductor está listo
   function onPlayerReady(event) {
-    event.target.playVideo();
+    event.target.playVideo()
   }
 
-  // 4. Función que se ejecuta cuando cambia el estado del reproductor
   function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-      setTimeout(stopVideo, 6000);
-      done = true;
+    // Cuando el video empieza a reproducirse, se detiene después de 6 segundos
+    if (event.data === YT.PlayerState.PLAYING && !done) {
+      setTimeout(stopVideo, 6000)
+      done = true
     }
   }
 
-  // 5. Función para detener el video después de 6 segundos
   function stopVideo() {
-    player.stopVideo();
+    player.value.stopVideo()
   }
-});
+})
 </script>
 
 <style>
@@ -98,6 +99,4 @@ nav {
   margin-top: 50px;
   height: 50px;
 }
-
-
 </style>
