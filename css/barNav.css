@@ -1,0 +1,64 @@
+.tituloCabecera {
+    color: white;
+    font-size: 48px;
+    margin-top: 0px;
+}
+
+.cabecera {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    background: rgb(255, 0, 0);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.espacioDeBotones {
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+.edicioneBotonesBarraDeNavegacion {
+    background: rgb(233, 68, 68);
+    border-color: rgb(233, 68, 68);
+    font-size: 20px;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    border: none;
+    margin-right: 15px;
+}
+
+.edicioneBotonesBarraDeNavegacion:hover {
+    background: rgb(230, 54, 54);
+    font-size: 20px;
+    color: white;
+}
+
+.edicioneBotonesBarraDeNavegacion2 {
+    background: rgb(39, 122, 245);
+    border-color: rgb(39, 122, 245);
+    font-size: 20px;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    border: none;
+    margin-right: 15px;
+}
+
+.edicioneBotonesBarraDeNavegacion2:hover {
+    background: rgb(16, 71, 154);
+    font-size: 20px;
+    color: white;
+}
